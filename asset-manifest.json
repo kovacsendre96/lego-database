@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/lego-database/static/js/main.80edcba8.js",
+    "index.html": "/lego-database/index.html",
+    "main.80edcba8.js.map": "/lego-database/static/js/main.80edcba8.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.80edcba8.js"
+  ]
+}

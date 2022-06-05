@@ -22,10 +22,10 @@ function App() {
   return (
     <Grid container justifyContent={'center'}>
       <Routes>
-        <Route path={`/`} element={<MainPage />} />
+        <Route path={`/lego-database`} element={<MainPage />} />
         {legoData &&
           legoData.map((data, index) => (
-            <Route key={index} path={`/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
+            <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
           ))
         }
       </Routes>

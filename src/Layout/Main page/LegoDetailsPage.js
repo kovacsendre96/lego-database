@@ -1,35 +1,32 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import Slider from "../../Helpers/Slider";
+import DetailsPageBottomBox from "./DetailsPageBottomBox";
 
 const LegoDetailsPage = ({ legoData }) => {
-    console.log(legoData);
-    const { banner_picture, box_picture, id, missing_pieces, name, number_of_pieces, real_picture, year_released } = legoData
+    const { banner_picture, box_picture, id, missing_pieces, name, number_of_pieces, real_picture, year_released, min_price, max_price } = legoData
     return (
-        <Grid container justifyContent={'space-around'}>
-            <Grid item xs={10} md={4} className="img-border" container alignItems={'center'}>
-                <img
-                    src={banner_picture}
-                    className="full-width"
-                />
-            </Grid>
-            <Grid item xs={10} md={4} className="img-border" container alignItems={'center'}>
-                <img
-                    src={box_picture}
-                    className="full-width"
-                />
-            </Grid>
-            <Grid item xs={10} md={4} className="img-border" container alignItems={'center'}>
-                <img
-                    className="full-width"
-                    src={real_picture}
-                />
+        <Grid direction={'column'} container justifyContent={'center'} alignItems={'center'}>
+            <p className="lego-font">{name}</p>
+            <Grid container justifyContent={'center'}>
+                <Grid item xs={12} md={8}>
+                    <Slider
+                        banner_picture={banner_picture}
+                        box_picture={box_picture}
+                        real_picture={real_picture}
+                    />
+                </Grid>
             </Grid>
 
-            {id}
-            {missing_pieces}
-            {name}
-            {number_of_pieces}
-            {year_released}
+            <DetailsPageBottomBox
+                id={id}
+                missing_pieces={missing_pieces}
+                name={name}
+                number_of_pieces={number_of_pieces}
+                year_released={year_released}
+                min_price={min_price}
+                max_price={max_price}
+            />
         </Grid>
 
     );

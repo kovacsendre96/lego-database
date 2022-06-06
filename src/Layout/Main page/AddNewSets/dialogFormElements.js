@@ -3,7 +3,7 @@ import SearchOffIcon from '@mui/icons-material/SearchOff';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import BadgeIcon from '@mui/icons-material/Badge';
+import TagIcon from '@mui/icons-material/Tag';
 
 export const inputStructure = (
     nameRef,
@@ -49,7 +49,7 @@ export const inputStructure = (
 ) => {
     return [
         {
-            icon: <BadgeIcon />,
+            icon: <LocalOfferIcon />,
             id: 'sett_name',
             text: 'Szett neve',
             ref: nameRef,
@@ -59,7 +59,7 @@ export const inputStructure = (
             setValue: setValueStateName
         },
         {
-            icon: <LocalOfferIcon />,
+            icon: <TagIcon />,
             id: 'sett_id',
             text: 'Szett azonosító',
             ref: idRef,

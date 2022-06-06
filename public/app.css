@@ -1,5 +1,19 @@
-a {
-    text-decoration: none;
+@font-face {
+    font-family: legoFont;
+    src: url(fonts/Legothick.ttf);
+}
+
+.lego-font {
+    font-family: legoFont;
+    text-transform: uppercase;
+    font-size: 3rem;
+    color: black;
+    text-shadow: 1px 1px #FFFF00;
+    margin: 20px;
+}
+
+.link {
+    text-decoration: none !important;
 }
 
 .full-width {
@@ -7,7 +21,7 @@ a {
 }
 
 .margin-sm {
-    margin: 8px;
+    margin: 8px !important;
 }
 
 .margin-sm-vertical {
@@ -24,4 +38,76 @@ a {
 
 .img-border {
     border: 1px solid gainsboro;
+}
+
+.thumbs-wrapper ul {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.carousel-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel .control-prev.control-arrow:before {
+    border-right: 8px solid #f33 !important;
+}
+
+.carousel .control-next.control-arrow:before {
+    border-left: 8px solid #f33 !important;
+}
+
+p {
+    margin: 0;
+}
+
+.details-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 15px;
+    text-align: center !important;
+}
+
+.details-text {
+    font-weight: bold;
+}
+
+.details-icon {
+    font-size: 3rem !important;
+    color: gray;
+}
+
+.detailsBoxWrapper {
+    padding: 25px;
+    margin: 15px;
+}
+
+.details-box {
+    position: relative;
+}
+
+.separator-horizontal {
+    display: none !important;
+}
+
+.separator-vertical {
+    position: absolute;
+    left: 70%;
+    bottom: 50%;
+    transform: rotate(90deg);
+    width: 150px;
+}
+
+
+@media screen and (max-width: 899px) {
+    .separator-horizontal {
+        color: blue;
+        display: block !important;
+    }
+
+    .separator-vertical {
+        display: none !important;
+    }
 }

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const LegoList = ({ legoData }) => {
     return (
         legoData.map((data, index) => (
-            <Grid item container xs={10} sm={5} md={3} key={index}>
-                <Link to={`/lego-database/${data.id}`}>
+            <Grid item container xs={10} sm={5} md={3} key={index} justifyContent={'center'}>
+                <Link className="link" to={`/lego-database/${data.id}`}>
                     <Box margin={'10px'} width={'100%'}>
                         <LegoCard
                             key={`card-${index}`}

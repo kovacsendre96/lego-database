@@ -21,14 +21,16 @@ function App() {
 
   return (
     <Grid container justifyContent={'center'}>
-      <Routes>
-        <Route path={`/lego-database`} element={<MainPage />} />
-        {legoData &&
-          legoData.map((data, index) => (
-            <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
-          ))
-        }
-      </Routes>
+      <Grid item xs={10}>
+        <Routes>
+          <Route path={`/lego-database`} element={<MainPage />} />
+          {legoData &&
+            legoData.map((data, index) => (
+              <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
+            ))
+          }
+        </Routes>
+      </Grid>
     </Grid>
   );
 }

@@ -8,7 +8,7 @@ const LegoList = ({ legoData }) => {
     return (
         legoData.map((data, index) => (
             <Grid item container xs={10} sm={5} md={3} key={index} justifyContent={'center'}>
-                <Link className="link" to={`/lego-database/${data.id}`}>
+                <Link className="link full-width margin-sm" to={`/lego-database/${data.id}`}>
                     <Box margin={'10px'} width={'100%'}>
                         <LegoCard
                             key={`card-${index}`}

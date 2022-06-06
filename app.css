@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: legoFont;
     src: url(fonts/Legothick.ttf);
@@ -103,7 +104,6 @@ p {
 
 @media screen and (max-width: 899px) {
     .separator-horizontal {
-        color: blue;
         display: block !important;
     }
 

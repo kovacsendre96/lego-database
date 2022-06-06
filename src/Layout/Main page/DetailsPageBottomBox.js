@@ -35,7 +35,6 @@ const DetailsPageBottomBox = ({ id, missing_pieces, name, number_of_pieces, year
             {legoDetailsArray.map((data, index) => {
                 const hideLastElement = index + 1 === legoDetailsArray.length;
                 return (
-
                     < Grid key={index} item xs={10} sm={6} md={2} container direction={'column'} alignItems={'center'} className="margin-sm details-box">
                         {data.logo}
                         <Typography

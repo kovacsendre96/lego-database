@@ -4,10 +4,7 @@ import { Box } from "@mui/system";
 import { inputStructure } from "./dialogFormElements";
 import { sendData } from "../../../Helpers/axios";
 
-
 const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen }) => {
-
-
 
     const nameRef = useRef();
     const idRef = useRef();
@@ -17,6 +14,8 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
     const boxRef = useRef();
     const realPicRef = useRef();
     const missingPiecesRef = useRef();
+    const priceFromRef = useRef();
+    const priceToRef = useRef();
 
     const [errorStateName, setErrorStateName] = useState(null);
     const [errorStateId, setErrorStateId] = useState(null);
@@ -26,6 +25,8 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
     const [errorStateBox, setErrorStateBox] = useState(null);
     const [errorStateRealImg, setErrorStateRealImg] = useState(null);
     const [errorStateMissing, setErrorStateMissing] = useState(null);
+    const [errorFromPrice, setErrorFromPrice] = useState(null);
+    const [errorToPrice, setErrorToPrice] = useState(null);
 
     const [valueStateName, setValueStateName] = useState(null);
     const [valueStateId, setValueStateId] = useState(null);
@@ -35,6 +36,8 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
     const [valueStateBox, setValueStateBox] = useState(null);
     const [valueStateRealImg, setValueStateRealImg] = useState(null);
     const [valueStateMissing, setValueStateMissing] = useState(null);
+    const [valueStateFromPrice, setValueStateFromPrice] = useState(null);
+    const [valueStateToPrce, setValueStateToPrce] = useState(null);
 
     const [formIsValid, setFormIsValid] = useState(false);
     useEffect(() => {
@@ -45,6 +48,8 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
             && errorStateBanner === false
             && errorStateBox === false
             && errorStateRealImg === false
+            && errorFromPrice === false
+            && errorToPrice === false
             && errorStateMissing === false) {
             setFormIsValid(true);
         } else {
@@ -92,7 +97,17 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
         valueStateRealImg,
         setValueStateRealImg,
         valueStateMissing,
-        setValueStateMissing
+        setValueStateMissing,
+        priceFromRef,
+        priceToRef,
+        errorFromPrice,
+        setErrorFromPrice,
+        errorToPrice,
+        setErrorToPrice,
+        valueStateFromPrice,
+        setValueStateFromPrice,
+        valueStateToPrce,
+        setValueStateToPrce
     );
 
     useEffect(() => {
@@ -122,6 +137,12 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
                 }
                 if (data.id === 'year_released') {
                     apiParams.year_released = data.value
+                }
+                if (data.id === 'min_price') {
+                    apiParams.min_price = data.value
+                }
+                if (data.id === 'max_price') {
+                    apiParams.max_price = data.value
                 }
             });
             let sendApiParams = legoData ? legoData : [];

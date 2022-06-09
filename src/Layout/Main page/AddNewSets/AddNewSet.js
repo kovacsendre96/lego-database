@@ -15,14 +15,13 @@ const AddNewSet = ({ legoData, setLegoData, handleSnakcbarClose, snackbarOpen, s
         setDialogOpen(false);
     };
 
-
-
     return (
         <React.Fragment>
             <Button variant="contained"
                 startIcon={<AddIcon />}
                 children={'Új hozzáadás'}
                 onClick={handleButtonClick}
+                className="margin-sm"
             />
             <NewDialog
                 handleButtonClick={handleButtonClick}

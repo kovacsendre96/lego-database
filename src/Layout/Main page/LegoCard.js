@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 
 
 const LegoCard = ({ legoData }) => {
-    const { banner_picture, name, id } = legoData;
+    const { banner_picture, name, id, year_released } = legoData;
     return (
         <Card>
             <CardActionArea>
@@ -20,10 +20,15 @@ const LegoCard = ({ legoData }) => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" align="center">
-                        {`Lego ${id}`}
+                        {name}
                         <div>
-                            {name}
+                            {`# ${id}`}
                         </div>
+
+                        <div>
+                            {year_released}
+                        </div>
+
                     </Typography>
                 </CardContent>
             </CardActionArea>

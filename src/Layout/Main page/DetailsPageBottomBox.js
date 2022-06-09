@@ -5,6 +5,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import TagIcon from '@mui/icons-material/Tag';
+import PaidIcon from '@mui/icons-material/Paid';
 
 const DetailsPageBottomBox = ({ id, missing_pieces, name, number_of_pieces, year_released, min_price, max_price }) => {
 
@@ -28,6 +29,11 @@ const DetailsPageBottomBox = ({ id, missing_pieces, name, number_of_pieces, year
             logo: <DateRangeIcon className="details-icon" />,
             value: year_released,
             text: 'Megjelenés'
+        },
+        {
+            logo: <PaidIcon className="details-icon" />,
+            value: `${min_price.toLocaleString()} - ${max_price.toLocaleString()} Ft`,
+            text: 'Ár'
         }
     ]
     return (

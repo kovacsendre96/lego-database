@@ -4,6 +4,8 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import TagIcon from '@mui/icons-material/Tag';
+import PaidIcon from '@mui/icons-material/Paid';
+
 
 export const inputStructure = (
     nameRef,
@@ -45,7 +47,17 @@ export const inputStructure = (
     valueStateRealImg,
     setValueStateRealImg,
     valueStateMissing,
-    setValueStateMissing
+    setValueStateMissing,
+    priceFromRef,
+    priceToRef,
+    errorFromPrice,
+    setErrorFromPrice,
+    errorToPrice,
+    setErrorToPrice,
+    valueStateFromPrice,
+    setValueStateFromPrice,
+    valueStateToPrce,
+    setValueStateToPrce
 ) => {
     return [
         {
@@ -128,5 +140,25 @@ export const inputStructure = (
             value: valueStateMissing,
             setValue: setValueStateMissing
         },
+        {
+            icon: <PaidIcon />,
+            id: 'min_price',
+            text: 'Ár -tól',
+            ref: priceFromRef,
+            error: errorFromPrice,
+            setError: setErrorFromPrice,
+            value: valueStateFromPrice,
+            setValue: setValueStateFromPrice
+        },
+        {
+            icon: <PaidIcon />,
+            id: 'max_price',
+            text: 'Ár -ig',
+            ref: priceToRef,
+            error: errorToPrice,
+            setError: setErrorToPrice,
+            value: valueStateToPrce,
+            setValue: setValueStateToPrce
+        },
     ];
-}
+};

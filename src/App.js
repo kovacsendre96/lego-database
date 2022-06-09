@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import LegoDetailsPage from "./Layout/Main page/LegoDetailsPage";
 import { useEffect, useState } from "react";
 import { sendData } from "./Helpers/axios";
+import { renderSpinner } from "./Helpers/functions";
 
 function App() {
 
@@ -18,13 +19,20 @@ function App() {
       setLegoData(response.data)
     }
   };
-
   return (
-    <Grid container justifyContent={'center'}>
-      <Grid item xs={10}>
+    <Grid container justifyContent={'center'} >
+      <Grid item xs={10} >
         <Routes>
-          <Route path={`/lego-database`} element={<MainPage />} />
-          {legoData &&
+
+          <Route path={`/lego-database`} element={
+            legoData !== null ?
+              <MainPage legoData={legoData} setLegoData={setLegoData} />
+              :
+              renderSpinner()
+
+          } />
+
+          {legoData !== null &&
             legoData.map((data, index) => (
               <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
             ))

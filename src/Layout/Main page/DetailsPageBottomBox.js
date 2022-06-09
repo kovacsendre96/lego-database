@@ -37,7 +37,7 @@ const DetailsPageBottomBox = ({ id, missing_pieces, name, number_of_pieces, year
         }
     ]
     return (
-        <Grid container justifyContent={'space-around'} className="detailsBoxWrapper">
+        <Grid container justifyContent={'space-around'}>
             {legoDetailsArray.map((data, index) => {
                 const hideLastElement = index + 1 === legoDetailsArray.length;
                 return (

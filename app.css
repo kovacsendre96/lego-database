@@ -84,11 +84,6 @@ p {
     color: gray;
 }
 
-.detailsBoxWrapper {
-    padding: 25px;
-    margin: 15px;
-}
-
 .details-box {
     position: relative;
 }

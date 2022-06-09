@@ -1,5 +1,5 @@
 import { Alert, Grid, Paper, Snackbar } from "@mui/material";
-import React, {useState } from "react";
+import React, { useState } from "react";
 import Header from "../Header";
 import AddNewSet from "./AddNewSets/AddNewSet";
 import LegoList from "./LegoList";
@@ -29,9 +29,11 @@ const MainPage = ({ legoData, setLegoData }) => {
                     setSnackbarOpen={setSnackbarOpen}
                 />
             </Grid>
-            <LegoList
-                legoData={legoData}
-            />
+            <Grid container justifyContent={'center'}>
+                <LegoList
+                    legoData={legoData}
+                />
+            </Grid>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnakcbarClose}>
                 <Alert onClose={handleSnakcbarClose} severity="success" sx={{ width: '100%' }}>
                     Sikeres mentés

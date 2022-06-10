@@ -218,6 +218,7 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setL
                 input.setError(true);
                 input.setValue(inputValue);
             } else {
+                console.log('INPUT',input)
                 input.setError(false);
                 input.setValue(inputValue);
             }

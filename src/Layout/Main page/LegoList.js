@@ -6,16 +6,19 @@ import { Link } from 'react-router-dom';
 
 const LegoList = ({ legoData }) => {
     return (
-        legoData.map((data, index) => (
-            <Grid item container xs={10} sm={6} md={4} key={index} justifyContent={'center'}>
-                <Link className="link full-width margin-sm" to={`/lego-database/${data.id}`}>
+        legoData.map((data, index) => {
+            return (
+                <Grid item container xs={10} sm={6} md={4} key={index} justifyContent={'center'}>
+                    <Link className="link full-width margin-sm" to={`/lego-database/${data.id}`}>
                         <LegoCard
                             key={`card-${index}`}
                             legoData={data}
                         />
-                </Link>
-            </Grid>
-        ))
+                    </Link>
+                </Grid>
+            )
+        }
+        )
     );
 };
 

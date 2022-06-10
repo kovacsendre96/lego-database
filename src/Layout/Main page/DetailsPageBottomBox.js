@@ -58,8 +58,6 @@ const DetailsPageBottomBox = ({ id, missing_pieces, name, number_of_pieces, year
                         <hr className="full-width separator-horizontal" style={{ visibility: hideLastElement ? 'hidden' : 'visible' }} />
                         <hr className="full-width separator-vertical" style={{ display: hideLastElement ? 'none ' : 'block' }} />
                     </Grid>
-
-
                 )
             }
             )}

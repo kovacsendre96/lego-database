@@ -57,7 +57,8 @@ export const inputStructure = (
     valueStateFromPrice,
     setValueStateFromPrice,
     valueStateToPrce,
-    setValueStateToPrce
+    setValueStateToPrce,
+    dialogType,
 ) => {
     return [
         {

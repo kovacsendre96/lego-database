@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { sendData } from "./Helpers/axios";
 import { renderSpinner } from "./Helpers/functions";
 
-function App() {
+const App = () => {
 
-  const [legoData, setLegoData] = useState(null);
+  const [legoData, setLegoData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     sendData('GET', 'https://lego-project-da06d-default-rtdb.firebaseio.com/.json', null, afterGetDatabase);
@@ -16,25 +17,26 @@ function App() {
 
   const afterGetDatabase = (response) => {
     if (response.status === 200) {
-      setLegoData(response.data)
+      setLegoData(Object.values(response.data))
+      setLoading(false);
     }
+
   };
   return (
     <Grid container justifyContent={'center'} >
       <Grid item xs={10} >
         <Routes>
-
           <Route path={`/lego-database`} element={
-            legoData !== null ?
-              <MainPage legoData={legoData} setLegoData={setLegoData} />
+            !loading ?
+              <MainPage legoData={legoData} setLegoData={setLegoData} afterGetDatabase={afterGetDatabase} />
               :
               renderSpinner()
 
           } />
 
-          {legoData !== null &&
+          {!loading &&
             legoData.map((data, index) => (
-              <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage legoData={data} />} />
+              <Route key={index} path={`/lego-database/${data.id}`} element={<LegoDetailsPage afterGetDatabase={afterGetDatabase} legoData={data} index={index} setLegoData={setLegoData} />} />
             ))
           }
         </Routes>

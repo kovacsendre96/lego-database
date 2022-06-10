@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { inputStructure } from "./dialogFormElements";
 import { sendData } from "../../../Helpers/axios";
 
-const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen }) => {
+const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen, dialogType }) => {
 
     const nameRef = useRef();
     const idRef = useRef();
@@ -38,6 +38,47 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
     const [valueStateMissing, setValueStateMissing] = useState(null);
     const [valueStateFromPrice, setValueStateFromPrice] = useState(null);
     const [valueStateToPrce, setValueStateToPrce] = useState(null);
+
+    const stateArray = [
+        valueStateName,
+        valueStateId,
+        valueStatePieces,
+        valueStateRelease,
+        valueStateBanner,
+        valueStateBox,
+        valueStateRealImg,
+        valueStateMissing,
+        valueStateFromPrice,
+        valueStateToPrce,
+    ];
+
+    const setStateArray = [
+        setValueStateName,
+        setValueStateId,
+        setValueStatePieces,
+        setValueStateRelease,
+        setValueStateBanner,
+        setValueStateBox,
+        setValueStateRealImg,
+        setValueStateMissing,
+        setValueStateFromPrice,
+        setValueStateToPrce
+    ];
+
+    useEffect(() => {
+        if (dialogType === 'setDetailsDialog') {
+            setValueStateName(legoData.name);
+            setValueStateId(legoData.id);
+            setValueStatePieces(legoData.number_of_pieces);
+            setValueStateRelease(legoData.year_released);
+            setValueStateBanner(legoData.banner_picture);
+            setValueStateBox(legoData.box_picture);
+            setValueStateRealImg(legoData.real_picture);
+            setValueStateMissing(legoData.missing_pieces);
+            setValueStateFromPrice(legoData.min_price);
+            setValueStateToPrce(legoData.max_price);
+        }
+    }, []);
 
     const [formIsValid, setFormIsValid] = useState(false);
     useEffect(() => {
@@ -145,17 +186,28 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
                     apiParams.max_price = data.value
                 }
             });
-            let sendApiParams = legoData ? legoData : [];
-            sendApiParams = [...sendApiParams, apiParams];
-            sendData('PUT', 'https://lego-project-da06d-default-rtdb.firebaseio.com/.json', sendApiParams, afterAddData);
+            if (dialogType === 'setDetailsDialog') {
+                console.log('index', index);
+                sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com/${apiParams.id}/.json`, apiParams, afterAddData);
+
+            } else {
+                let sendApiParams = legoData ? legoData : [];
+                sendApiParams = [...sendApiParams, apiParams];
+                sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com/${apiParams.id}/.json/`, apiParams, afterAddData);
+            }
         }
     }, [formIsValid]);
 
     const afterAddData = (response) => {
-        console.log('response', response);
-        setSnackbarOpen(true);
-        setLegoData(response.data);
-        handleDialogClose();
+        if (dialogType === 'setDetailsDialog') {
+            sendData('GET', 'https://lego-project-da06d-default-rtdb.firebaseio.com/.json', null, afterGetDatabase);
+            handleDialogClose();
+            setSnackbarOpen(true);
+        } else {
+            sendData('GET', 'https://lego-project-da06d-default-rtdb.firebaseio.com/.json', null, afterGetDatabase);
+            setSnackbarOpen(true);
+            handleDialogClose();
+        }
     };
 
     const handleFormSubmit = (e) => {
@@ -185,6 +237,8 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
                     label={data.text}
                     variant="standard"
                     error={data.error}
+                    value={stateArray[index]}
+                    onChange={(e) => setStateArray[index](e.target.value)}
                 />
             </Box>
         ))
@@ -196,7 +250,7 @@ const DialogForm = ({ handleDialogClose, legoData, setLegoData, handleSnakcbarCl
                 {renderInputs()}
                 <Grid container alignItems={'center'} justifyContent={'space-around'} className="margin-md">
                     <Button type="submit" autoFocus variant="contained">
-                        Készlet felvétele
+                        {dialogType === 'setDetailsDialog' ? 'Mentés' : 'Készlet felvétele'}
                     </Button>
                     <Button autoFocus onClick={handleDialogClose} variant="text">
                         Vissza

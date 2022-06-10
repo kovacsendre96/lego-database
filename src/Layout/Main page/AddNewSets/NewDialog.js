@@ -2,7 +2,7 @@ import React from "react";
 import { Dialog, DialogContent, DialogTitle, Grid } from "@mui/material";
 import DialogForm from "./DialogForm";
 
-const NewDialog = ({ dialogOpen, handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen,setSnackbarOpen}) => {
+const NewDialog = ({ afterGetDatabase, index, dialogOpen, handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen, dialogType }) => {
 
     return (
         <React.Fragment>
@@ -15,12 +15,15 @@ const NewDialog = ({ dialogOpen, handleDialogClose, legoData, setLegoData, handl
                 </DialogTitle>
                 <DialogContent>
                     <DialogForm
+                        dialogType={dialogType}
                         handleDialogClose={handleDialogClose}
                         legoData={legoData}
                         setLegoData={setLegoData}
                         handleSnakcbarClose={handleSnakcbarClose}
                         snackbarOpen={snackbarOpen}
                         setSnackbarOpen={setSnackbarOpen}
+                        index={index}
+                        afterGetDatabase={afterGetDatabase}
                     />
                 </DialogContent>
             </Dialog>

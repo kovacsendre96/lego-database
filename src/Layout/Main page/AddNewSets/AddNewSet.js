@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import NewDialog from "./NewDialog.js";
 
 
-const AddNewSet = ({ legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen }) => {
+const AddNewSet = ({ afterGetDatabase, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen }) => {
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleButtonClick = () => {
@@ -32,6 +32,7 @@ const AddNewSet = ({ legoData, setLegoData, handleSnakcbarClose, snackbarOpen, s
                 handleSnakcbarClose={handleSnakcbarClose}
                 snackbarOpen={snackbarOpen}
                 setSnackbarOpen={setSnackbarOpen}
+                afterGetDatabase={afterGetDatabase}
             />
         </React.Fragment>
     );

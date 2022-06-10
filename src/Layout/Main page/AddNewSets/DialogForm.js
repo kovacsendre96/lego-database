@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { inputStructure } from "./dialogFormElements";
 import { sendData } from "../../../Helpers/axios";
 
-const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setLegoData, handleSnakcbarClose, snackbarOpen, setSnackbarOpen, dialogType }) => {
+const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setSnackbarOpen, dialogType }) => {
 
     const nameRef = useRef();
     const idRef = useRef();

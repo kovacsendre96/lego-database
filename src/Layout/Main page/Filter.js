@@ -28,7 +28,7 @@ const Filter = ({legoData, setLegoData}) => {
         onChange={handleFilterInputChangeName}
         label="Név"
         variant="outlined"
-        className="margin-sm"
+        className="margin-sm input-width"
         InputProps={{
           endAdornment: <InputAdornment position="end">{
             <SearchIcon/>
@@ -43,7 +43,7 @@ const Filter = ({legoData, setLegoData}) => {
         onChange={handleFilterInputChangeId}
         label="Azonosító"
         variant="outlined"
-        className="margin-sm"
+        className="margin-sm input-width"
         InputProps={{
           endAdornment: <InputAdornment position="end">{
             <SearchIcon/>

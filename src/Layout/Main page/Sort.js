@@ -66,15 +66,13 @@ const Sort = ({legoData, setLegoData}) => {
         id="sorting"
         options={optionsArray}
         getOptionLabel={(option) => option.title}
-        sx={{width: 150}}
         renderInput={(params) => <TextField {...params} label="Rendezés"/>}
-        className="margin-sm"
+        className="margin-sm input-width"
         onChange={handleSortChange}
         value={sortType}
-        style={{width: '266.63px'}}
       />
 
-      <FormControl style={{width: '266.63px'}} className="margin-sm">
+      <FormControl className="margin-sm input-width">
         <InputLabel id="select-label">Rendezési irány</InputLabel>
         <Select
           labelId="select-label"

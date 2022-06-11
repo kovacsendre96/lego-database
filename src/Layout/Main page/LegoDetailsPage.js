@@ -4,6 +4,7 @@ import Slider from "../../Helpers/Slider";
 import NewDialog from "./AddNewSets/NewDialog";
 import DetailsPageBottomBox from "./DetailsPageBottomBox";
 import EditIcon from '@mui/icons-material/Edit';
+import MissingPieces from "./MissingPieces/MissingPieces";
 
 const LegoDetailsPage = ({ afterGetDatabase, legoData, setLegoData, index }) => {
     const { banner_picture, box_picture, id, missing_pieces, name, number_of_pieces, real_picture, year_released, min_price, max_price } = legoData
@@ -64,12 +65,18 @@ const LegoDetailsPage = ({ afterGetDatabase, legoData, setLegoData, index }) => 
                 handleSnakcbarClose={handleSnakcbarClose}
                 afterGetDatabase={afterGetDatabase}
             />
-            <Button variant="contained"
-                startIcon={<EditIcon />}
-                children={'Szerkesztés'}
-                onClick={() => { setDialogOpen(true) }}
-                className="margin-sm"
-            />
+            <Grid container justifyContent={'center'} className="margin-md">
+                <Button variant="contained"
+                    startIcon={<EditIcon />}
+                    children={'Szerkesztés'}
+                    onClick={() => { setDialogOpen(true) }}
+                    className="margin-sm"
+                />
+                <MissingPieces
+                    legoData={legoData}
+                    setLegoData={setLegoData}
+                />
+            </Grid>
         </Grid>
 
     );

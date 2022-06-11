@@ -11,7 +11,7 @@ const NewDialog = ({ afterGetDatabase, index, dialogOpen, handleDialogClose, leg
                 onClose={handleDialogClose}
             >
                 <DialogTitle>
-                    Új Lego készlet hozzáadása
+                    {dialogType === 'setDetailsDialog' ? 'Készlet szerkesztése' : 'Új Lego készlet hozzáadása'}
                 </DialogTitle>
                 <DialogContent>
                     <DialogForm

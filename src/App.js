@@ -20,7 +20,7 @@ const App = () => {
       setLegoData(Object.values(response.data))
       setLoading(false);
     }
-console.log(process.env.PUBLIC_URL);
+
   };
   return (
     <Grid container justifyContent={'center'}>

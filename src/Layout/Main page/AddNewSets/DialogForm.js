@@ -13,7 +13,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
     const bannerRef = useRef();
     const boxRef = useRef();
     const realPicRef = useRef();
-    const missingPiecesRef = useRef();
     const priceFromRef = useRef();
     const priceToRef = useRef();
 
@@ -24,7 +23,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
     const [errorStateBanner, setErrorStateBanner] = useState(null);
     const [errorStateBox, setErrorStateBox] = useState(null);
     const [errorStateRealImg, setErrorStateRealImg] = useState(null);
-    const [errorStateMissing, setErrorStateMissing] = useState(null);
     const [errorFromPrice, setErrorFromPrice] = useState(null);
     const [errorToPrice, setErrorToPrice] = useState(null);
 
@@ -35,7 +33,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
     const [valueStateBanner, setValueStateBanner] = useState(null);
     const [valueStateBox, setValueStateBox] = useState(null);
     const [valueStateRealImg, setValueStateRealImg] = useState(null);
-    const [valueStateMissing, setValueStateMissing] = useState(null);
     const [valueStateFromPrice, setValueStateFromPrice] = useState(null);
     const [valueStateToPrce, setValueStateToPrce] = useState(null);
 
@@ -47,7 +44,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
         valueStateBanner,
         valueStateBox,
         valueStateRealImg,
-        valueStateMissing,
         valueStateFromPrice,
         valueStateToPrce,
     ];
@@ -60,7 +56,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
         setValueStateBanner,
         setValueStateBox,
         setValueStateRealImg,
-        setValueStateMissing,
         setValueStateFromPrice,
         setValueStateToPrce
     ];
@@ -74,7 +69,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
             setValueStateBanner(legoData.banner_picture);
             setValueStateBox(legoData.box_picture);
             setValueStateRealImg(legoData.real_picture);
-            setValueStateMissing(legoData.missing_pieces);
             setValueStateFromPrice(legoData.min_price);
             setValueStateToPrce(legoData.max_price);
         }
@@ -91,12 +85,12 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
             && errorStateRealImg === false
             && errorFromPrice === false
             && errorToPrice === false
-            && errorStateMissing === false) {
+        ) {
             setFormIsValid(true);
         } else {
             setFormIsValid(false);
         }
-    }, [errorStateName, errorStateId, errorStatePieces, errorStateRelease, errorStateBanner, errorStateBox, errorStateRealImg, errorStateMissing]);
+    }, [errorStateName, errorStateId, errorStatePieces, errorStateRelease, errorStateBanner, errorStateBox, errorStateRealImg]);
 
     const inputs = inputStructure(
         nameRef,
@@ -106,7 +100,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
         bannerRef,
         boxRef,
         realPicRef,
-        missingPiecesRef,
         errorStateName,
         setErrorStateName,
         errorStateId,
@@ -121,8 +114,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
         setErrorStateBox,
         errorStateRealImg,
         setErrorStateRealImg,
-        errorStateMissing,
-        setErrorStateMissing,
         valueStateName,
         setValueStateName,
         valueStateId,
@@ -137,8 +128,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
         setValueStateBox,
         valueStateRealImg,
         setValueStateRealImg,
-        valueStateMissing,
-        setValueStateMissing,
         priceFromRef,
         priceToRef,
         errorFromPrice,
@@ -157,9 +146,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
             inputs.forEach((data) => {
                 if (data.id === 'sett_id') {
                     apiParams.id = data.value
-                }
-                if (data.id === 'missing_pieces') {
-                    apiParams.missing_pieces = data.value
                 }
                 if (data.id === 'sett_name') {
                     apiParams.name = data.value
@@ -187,7 +173,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
                 }
             });
             if (dialogType === 'setDetailsDialog') {
-                console.log('index', index);
                 sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com/${apiParams.id}/.json`, apiParams, afterAddData);
 
             } else {
@@ -218,7 +203,6 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
                 input.setError(true);
                 input.setValue(inputValue);
             } else {
-                console.log('INPUT',input)
                 input.setError(false);
                 input.setValue(inputValue);
             }

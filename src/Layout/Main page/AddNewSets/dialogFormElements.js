@@ -1,5 +1,4 @@
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import SearchOffIcon from '@mui/icons-material/SearchOff';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
@@ -15,7 +14,6 @@ export const inputStructure = (
     bannerRef,
     boxRef,
     realPicRef,
-    missingPiecesRef,
     errorStateName,
     setErrorStateName,
     errorStateId,
@@ -30,8 +28,6 @@ export const inputStructure = (
     setErrorStateBox,
     errorStateRealImg,
     setErrorStateRealImg,
-    errorStateMissing,
-    setErrorStateMissing,
     valueStateName,
     setValueStateName,
     valueStateId,
@@ -46,8 +42,6 @@ export const inputStructure = (
     setValueStateBox,
     valueStateRealImg,
     setValueStateRealImg,
-    valueStateMissing,
-    setValueStateMissing,
     priceFromRef,
     priceToRef,
     errorFromPrice,
@@ -58,7 +52,6 @@ export const inputStructure = (
     setValueStateFromPrice,
     valueStateToPrce,
     setValueStateToPrce,
-    dialogType,
 ) => {
     return [
         {
@@ -130,16 +123,6 @@ export const inputStructure = (
             setError: setErrorStateRealImg,
             value: valueStateRealImg,
             setValue: setValueStateRealImg
-        },
-        {
-            icon: <SearchOffIcon />,
-            id: 'missing_pieces',
-            text: 'Hiányzó darabok',
-            ref: missingPiecesRef,
-            error: errorStateMissing,
-            setError: setErrorStateMissing,
-            value: valueStateMissing,
-            setValue: setValueStateMissing
         },
         {
             icon: <PaidIcon />,

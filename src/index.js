@@ -4,8 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const basename = window.location.host;
 root.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
     <App />
   </BrowserRouter>
 );

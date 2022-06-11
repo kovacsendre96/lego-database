@@ -26,7 +26,7 @@ console.log(process.env.PUBLIC_URL);
     <Grid container justifyContent={'center'}>
       <Grid item xs={10}>
         <Routes>
-          <Route path={`${process.env.PUBLIC_URL}/`} element={
+          <Route path={`/`} element={
             !loading ?
               <MainPage legoData={legoData} setLegoData={setLegoData} afterGetDatabase={afterGetDatabase}/>
               :
@@ -35,7 +35,7 @@ console.log(process.env.PUBLIC_URL);
 
           {!loading &&
           legoData.map((data, index) => (
-            <Route key={index} path={`${process.env.PUBLIC_URL}/${data.id}`}
+            <Route key={index} path={`/${data.id}`}
                    element={
                      <LegoDetailsPage
                        afterGetDatabase={afterGetDatabase}

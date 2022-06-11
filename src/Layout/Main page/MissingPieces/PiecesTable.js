@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,20 +9,18 @@ import Paper from '@mui/material/Paper';
 import { Grid } from "@mui/material";
 import AddMissingPieces from "./AddMissingPieces";
 
-function createData(img, name, piece, color) {
-    return { img, name, piece, color };
-}
+const PiecesTable = ({ legoData, setLegoData }) => {
 
+    const [missingPiecesList, setMissingPiecesList] = useState(Object.values(legoData.missing_pieces));
 
-const PiecesTable = () => {
-
-    const [missingPiecesList, setMissingPiecesList] = useState([]);
     return (
         <Grid container justifyContent={'center'}>
             <Grid item xs={12} component={Paper} className="margin-md">
                 <AddMissingPieces
                     missingPiecesList={missingPiecesList}
                     setMissingPiecesList={setMissingPiecesList}
+                    legoData={legoData}
+                    setLegoData={setLegoData}
                 />
             </Grid>
             <TableContainer component={Paper} className="margin-md">

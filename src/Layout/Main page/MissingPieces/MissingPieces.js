@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import PiecesTable from "./PiecesTable";
 import ExtensionIcon from '@mui/icons-material/Extension';
 
-
-const MissingPieces = () => {
+const MissingPieces = ({ legoData, setLegoData }) => {
 
     const [dialogOpen, setDialogOpen] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -38,7 +37,10 @@ const MissingPieces = () => {
                     Hiányzó elemek
                 </DialogTitle>
                 <DialogContent>
-                    <PiecesTable />
+                    <PiecesTable
+                        legoData={legoData}
+                        setLegoData={setLegoData}
+                    />
                     <Button autoFocus onClick={handleDialogClose} variant="text">
                         Vissza
                     </Button>

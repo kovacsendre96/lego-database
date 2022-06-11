@@ -5,10 +5,10 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import TagIcon from '@mui/icons-material/Tag';
+import { sendData } from "../../../Helpers/axios";
 
 
-const AddMissingPieces = ({ missingPiecesList, setMissingPiecesList }) => {
-
+const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissingPiecesList }) => {
     const [img, setImg] = useState('');
     const [id, setId] = useState('');
     const [name, setName] = useState('');
@@ -29,14 +29,20 @@ const AddMissingPieces = ({ missingPiecesList, setMissingPiecesList }) => {
 
     useEffect(() => {
         if (imgError === false && nameError === false && numberError === false && colorError === false && idError === false) {
-            setMissingPiecesList([...missingPiecesList, formObject]);
             setImg('');
             setName('');
             setNumber('');
             setColor('');
             setId('');
+            sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${legoData.id}/missing_pieces.json`, formObject, afterPutMissingData);
         }
     }, [formObject]);
+
+    const afterPutMissingData = (response) => {
+        if (response.status === 200) {
+            setMissingPiecesList([...missingPiecesList, formObject]);
+        }
+    };
 
     const HandleImgChange = (e) => {
         const target = e.target.value;
@@ -163,7 +169,7 @@ const AddMissingPieces = ({ missingPiecesList, setMissingPiecesList }) => {
     return (
         <Grid container justifyContent={'center'}>
             {inputsArray.map((data, index) => (
-                <Grid key={index} item xs={12} sm={6} md={2} container justifyContent={'center'}>
+                <Grid key={index} item xs={12} sm={4} md={2} container justifyContent={'center'}>
                     <TextField
                         type={data.type}
                         id={data.id}

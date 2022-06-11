@@ -173,11 +173,11 @@ const DialogForm = ({ afterGetDatabase, index, handleDialogClose, legoData, setS
                 }
             });
             if (dialogType === 'setDetailsDialog') {
+                apiParams['missing_pieces'] = legoData.missing_pieces ? legoData.missing_pieces : [{ a: 'a' }];
                 sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com/${apiParams.id}/.json`, apiParams, afterAddData);
 
             } else {
-                let sendApiParams = legoData ? legoData : [];
-                sendApiParams = [...sendApiParams, apiParams];
+                apiParams['missing_pieces'] = [{ a: 'a' }];
                 sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com/${apiParams.id}/.json/`, apiParams, afterAddData);
             }
         }

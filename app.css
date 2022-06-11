@@ -34,7 +34,7 @@
 }
 
 .margin-md {
-    margin: 16px;
+    margin: 16px !important;
 }
 
 .margin-lg {

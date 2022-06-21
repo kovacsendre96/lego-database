@@ -1,10 +1,12 @@
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import MainPage from "./Layout/Main page/MainPage";
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LegoDetailsPage from "./Layout/Main page/LegoDetailsPage";
-import {useEffect, useState} from "react";
-import {sendData} from "./Helpers/axios";
-import {renderSpinner} from "./Helpers/functions";
+import { useEffect, useState } from "react";
+import { sendData } from "./Helpers/axios";
+import { renderSpinner } from "./Helpers/functions";
+import Nav from "./Layout/Header/Nav";
+import MissingPiecesPage from "./Layout/MissingPieces/MissingPiecesPage";
 
 const App = () => {
 
@@ -25,26 +27,35 @@ const App = () => {
   return (
     <Grid container justifyContent={'center'}>
       <Grid item xs={10}>
+        <Nav />
         <Routes>
           <Route path={`/`} element={
             !loading ?
-              <MainPage legoData={legoData} setLegoData={setLegoData} afterGetDatabase={afterGetDatabase}/>
+              <MainPage legoData={legoData} setLegoData={setLegoData} afterGetDatabase={afterGetDatabase} />
               :
               renderSpinner()
-          }/>
+          } />
+          <Route path={`/missing-pieces`} element={
+            !loading ?
+              <MissingPiecesPage
+                legoData={legoData} setLegoData={setLegoData}
+              />
+              :
+              renderSpinner()
+          } />
 
           {!loading &&
-          legoData.map((data, index) => (
-            <Route key={index} path={`/${data.id}`}
-                   element={
-                     <LegoDetailsPage
-                       afterGetDatabase={afterGetDatabase}
-                       legoData={data}
-                       index={index}
-                       setLegoData={setLegoData}
-                     />}
-            />
-          ))
+            legoData.map((data, index) => (
+              <Route key={index} path={`/${data.id}`}
+                element={
+                  <LegoDetailsPage
+                    afterGetDatabase={afterGetDatabase}
+                    legoData={data}
+                    index={index}
+                    setLegoData={setLegoData}
+                  />}
+              />
+            ))
           }
         </Routes>
       </Grid>

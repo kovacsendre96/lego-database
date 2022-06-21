@@ -1,12 +1,12 @@
-import {Alert, Grid, Paper, Snackbar} from "@mui/material";
-import React, {useState} from "react";
-import Header from "../Header";
+import { Alert, Grid, Paper, Snackbar } from "@mui/material";
+import React, { useState } from "react";
+import Header from "../Header/Header";
 import AddNewSet from "./AddNewSets/AddNewSet";
 import LegoList from "./LegoList";
 import Sort from "./Sort";
 import Filter from "./Filter";
 
-const MainPage = ({legoData, setLegoData, afterGetDatabase}) => {
+const MainPage = ({ legoData, setLegoData, afterGetDatabase }) => {
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -16,7 +16,7 @@ const MainPage = ({legoData, setLegoData, afterGetDatabase}) => {
   return (
     <Grid container justifyContent={'center'}>
       <React.Fragment>
-        <Header/>
+        <Header />
         <Grid container justifyContent={'space-around'} alignItems={'center'} component={Paper} className="margin-md">
           <Grid item xs={12} container justifyContent={'center'} alignItems={'center'}>
             <Sort
@@ -52,7 +52,7 @@ const MainPage = ({legoData, setLegoData, afterGetDatabase}) => {
           }
         </Grid>
         <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnakcbarClose}>
-          <Alert onClose={handleSnakcbarClose} severity="success" sx={{width: '100%'}}>
+          <Alert onClose={handleSnakcbarClose} severity="success" sx={{ width: '100%' }}>
             Sikeres mentés
           </Alert>
         </Snackbar>

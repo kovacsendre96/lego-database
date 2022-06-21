@@ -6,25 +6,28 @@ import ColorLensIcon from '@mui/icons-material/ColorLens';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import TagIcon from '@mui/icons-material/Tag';
 import { sendData } from "../../../Helpers/axios";
+import SetSelector from "../../MissingPieces/SetSelector";
 
 
-const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissingPiecesList }) => {
+const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissingPiecesList, from, listOfAllLegoSet }) => {
     const [img, setImg] = useState('');
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
     const [color, setColor] = useState('');
+    const [setSelectorValue, setSetSelectorValue] = useState({ id: '', name: 'Válassz' });
 
     const [imgError, setImgError] = useState(null);
     const [idError, setIdError] = useState(null);
     const [nameError, setNameError] = useState(null);
     const [numberError, setNumberError] = useState(null);
     const [colorError, setColorError] = useState(null);
+    const [setSelectorError, setSetSelectorError] = useState(null);
 
     const [formObject, setFormObject] = useState(null);
 
     const stateArray = [
-        img, id, name, number, color
+        img, id, name, number, color, setSelectorValue
     ];
 
     useEffect(() => {
@@ -34,7 +37,12 @@ const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissing
             setNumber('');
             setColor('');
             setId('');
-            sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${legoData.id}/missing_pieces.json`, formObject, afterPutMissingData);
+            setSetSelectorValue('');
+            if (from === 'missing-pieces-page') {
+                sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${formObject.setId}/missing_pieces.json`, formObject, afterPutMissingData);
+            } else {
+                sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${legoData.id}/missing_pieces.json`, formObject, afterPutMissingData);
+            }
         }
     }, [formObject]);
 
@@ -63,6 +71,10 @@ const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissing
     const HandleColorChange = (e) => {
         const target = e.target.value;
         setColor(target);
+    };
+    const HandleSetSelectorChange = (e, a) => {
+        const target = a;
+        setSetSelectorValue(target);
     };
 
     const inputsArray = [
@@ -162,12 +174,29 @@ const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissing
                     setColorError(true);
                 }
             }
+            if (index === 5) {
+                if (data.name !== 'Válassz') {
+                    missingObject.setId = data.id;
+                    setSetSelectorError(false);
+                } else {
+                    setSetSelectorError(true);
+                }
+            }
         });
         setFormObject(missingObject);
     };
-
     return (
         <Grid container justifyContent={'center'}>
+            {from === 'missing-pieces-page' &&
+                <Grid key={'0-0'} item xs={12} sm={4} md={2} container justifyContent={'center'}>
+                    <SetSelector
+                        listOfAllLegoSet={listOfAllLegoSet}
+                        setSelectorValue={setSelectorValue}
+                        setSelectorError={setSelectorError}
+                        HandleSetSelectorChange={HandleSetSelectorChange}
+                    />
+                </Grid>
+            }
             {inputsArray.map((data, index) => (
                 <Grid key={index} item xs={12} sm={4} md={2} container justifyContent={'center'}>
                     <TextField

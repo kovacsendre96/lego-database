@@ -1,6 +1,27 @@
+:root {
+    --main-color: #1565C0;
+}
+
 @font-face {
     font-family: legoFont;
     src: url(fonts/Legothick.ttf);
+}
+
+.nav {
+   
+    height: 60px;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 10px;
+    z-index: 2;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.nav .link {
+    color: var(--main-color);
+    display: flex;
+    align-items: center;
 }
 
 .lego-font {

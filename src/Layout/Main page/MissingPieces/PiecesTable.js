@@ -56,6 +56,7 @@ const PiecesTable = ({ legoData, setLegoData, from, listOfAllLegoSet }) => {
                     listOfAllLegoSet={listOfAllLegoSet}
                 />
             </Grid>
+            {`${from === 'missing-pieces-page' ? missingPiecesList.length : missingPiecesList.length - 1} találat`}
             <TableContainer component={Paper} className="margin-md">
                 <Table aria-label="simple table">
                     <TableHead>

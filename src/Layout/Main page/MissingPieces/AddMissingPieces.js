@@ -38,7 +38,7 @@ const AddMissingPieces = ({ legoData, setLegoData, missingPiecesList, setMissing
             setColor('');
             setId('');
             setSetSelectorValue('');
-            if (from === 'missing-pieces-page') {
+            if (from === 'missing-pieces-page' && setSelectorError === false) {
                 sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${formObject.setId}/missing_pieces.json`, formObject, afterPutMissingData);
             } else {
                 sendData('POST', `https://lego-project-da06d-default-rtdb.firebaseio.com/${legoData.id}/missing_pieces.json`, formObject, afterPutMissingData);

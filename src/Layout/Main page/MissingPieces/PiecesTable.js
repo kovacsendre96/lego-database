@@ -8,13 +8,20 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Grid } from "@mui/material";
 import AddMissingPieces from "./AddMissingPieces";
+import EditIcon from '@mui/icons-material/Edit';
+import EditMissingPieces from "../../../Helpers/EditMissingPieces";
 
 const PiecesTable = ({ legoData, setLegoData, from, listOfAllLegoSet }) => {
     const initialDefaultValue = from === 'missing-pieces-page' ? legoData : legoData.missing_pieces;
     const [missingPiecesList, setMissingPiecesList] = useState(Object.values(initialDefaultValue));
+    const [isEditingState, setIsEditingState] = useState(null);
+
+    const handleEditClick = (row, index) => {
+        console.log(row);
+        setIsEditingState(index);
+    };
 
     const renderTableBody = (row, index) => {
-        console.log(index);
         if (index === 0 && from !== 'missing-pieces-page') { return; }
         else {
             return (
@@ -25,13 +32,30 @@ const PiecesTable = ({ legoData, setLegoData, from, listOfAllLegoSet }) => {
                     {row.setName === undefined && row.setImg === undefined &&
                         <Fragment>
                             <TableCell key='0' align="left">{from !== 'missing-pieces-page' ? index : index + 1}</TableCell>
-                            <TableCell align="left" key="1" component="th" scope="row">
-                                <img style={{ width: 75 }} src={row.img} alt={row.img} />
-                            </TableCell>
-                            <TableCell key='2' align="left">{row.id}</TableCell>
-                            <TableCell key='3' align="left">{row.name}</TableCell>
-                            <TableCell key='4' align="left">{row.piece}</TableCell>
-                            <TableCell key='5' align="left">{row.color}</TableCell>
+                            {isEditingState === index ?
+                                <EditMissingPieces
+                                    missingPiecesRow={row}
+                                    setIsEditingState={setIsEditingState}
+                                />
+                                :
+                                <Fragment>
+                                    <TableCell align="left" key="1" component="th" scope="row">
+                                        <img style={{ width: 75 }} src={row.img} alt={row.img} />
+                                    </TableCell>
+                                    <TableCell key='2' align="left">{row.id}</TableCell>
+                                    <TableCell key='3' align="left">{row.name}</TableCell>
+                                    <TableCell key='4' align="left">{row.piece}</TableCell>
+                                    <TableCell key='5' align="left">{row.color}</TableCell>
+                                </Fragment>
+                            }
+                            {index !== isEditingState &&
+                                <TableCell key='6' align="left" >
+                                    <EditIcon
+                                        className="main-blue-color pointer-cursor"
+                                        onClick={() => handleEditClick(row, index)}
+                                    />
+                                </TableCell>
+                            }
                         </Fragment>
                     }
                     {row.setName &&
@@ -67,6 +91,7 @@ const PiecesTable = ({ legoData, setLegoData, from, listOfAllLegoSet }) => {
                             <TableCell align="left" key={'head-cell-3'}>Elem neve</TableCell>
                             <TableCell align="left" key={'head-cell-4'}>Darabszám</TableCell>
                             <TableCell align="left" key={'head-cell-5'}>Szín</TableCell>
+                            <TableCell align="left" key={'head-cell-6'}>Szerkesztés</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

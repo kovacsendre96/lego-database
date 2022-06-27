@@ -8,7 +8,7 @@
 }
 
 .nav {
-   
+
     height: 60px;
     margin-bottom: 30px;
     position: sticky;
@@ -141,4 +141,20 @@ p {
 
 .input-width {
     width: 210px;
+}
+
+.main-blue-color {
+    color: var(--main-color);
+}
+
+.main-blue-background {
+    background-color: var(--main-color);
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex !important;
 }

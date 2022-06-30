@@ -7,8 +7,9 @@
     src: url(fonts/Legothick.ttf);
 }
 
+
 .nav {
-   
+
     height: 60px;
     margin-bottom: 30px;
     position: sticky;
@@ -141,4 +142,32 @@ p {
 
 .input-width {
     width: 210px;
+}
+
+.main-blue-color {
+    color: var(--main-color);
+}
+
+.main-blue-background {
+    background-color: var(--main-color);
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.missing-piece-main-set {
+    transition: 0.3s;
+    background: rgba(117, 117, 117, .4);
+    cursor: pointer;
+    padding: 0 !important;
+
+}
+
+.missing-piece-main-set:hover {
+    background: rgba(117, 117, 117, .2);
 }

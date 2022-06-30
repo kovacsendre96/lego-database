@@ -7,6 +7,7 @@
     src: url(fonts/Legothick.ttf);
 }
 
+
 .nav {
 
     height: 60px;
@@ -157,4 +158,16 @@ p {
 
 .flex {
     display: flex !important;
+}
+
+.missing-piece-main-set {
+    transition: 0.3s;
+    background: rgba(117, 117, 117, .4);
+    cursor: pointer;
+    padding: 0 !important;
+
+}
+
+.missing-piece-main-set:hover {
+    background: rgba(117, 117, 117, .2);
 }

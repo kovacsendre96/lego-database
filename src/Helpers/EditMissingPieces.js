@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { sendData } from "./axios";
 
 const EditMissingPieces = ({ missingPiecesRow, setIsEditingState }) => {
 
@@ -10,6 +11,15 @@ const EditMissingPieces = ({ missingPiecesRow, setIsEditingState }) => {
 
     const handleCancelClick = () => {
         setIsEditingState(null);
+    };
+
+    const handleDeleteClick = () => {
+    /*     sendData('PUT', `https://lego-project-da06d-default-rtdb.firebaseio.com.json`, null, afterDeletedMissingPiece); */
+        console.log(missingPiecesRow);
+    };
+
+    const afterDeletedMissingPiece = (response) => {
+        console.log(response);
     };
 
     return (
@@ -46,7 +56,7 @@ const EditMissingPieces = ({ missingPiecesRow, setIsEditingState }) => {
                         <SaveIcon className="main-blue-color pointer-cursor" />
                     </Tooltip>
                     <Tooltip title="Törlés" placement="top">
-                        <DeleteIcon className="main-blue-color pointer-cursor" />
+                        <DeleteIcon className="main-blue-color pointer-cursor" onClick={handleDeleteClick} />
                     </Tooltip>
                     <Tooltip title="Mégsem" placement="top">
                         <CancelIcon className="main-blue-color pointer-cursor" onClick={handleCancelClick} />
